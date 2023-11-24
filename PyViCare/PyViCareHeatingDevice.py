@@ -629,6 +629,11 @@ class HeatingCircuit(HeatingDeviceWithComponent):
         return status == 'on'
 
     @handleNotSupported
+    def getTemperatureTarget(self):
+        return self.service.getProperty(f"heating.circuits.{self.circuit}.temperature")["properties"]["temperature"][
+            "value"]
+
+    @handleNotSupported
     def getTemperatureLevelsMin(self):
         return self.service.getProperty(f"heating.circuits.{self.circuit}.temperature.levels")["properties"]["min"][
             "value"]
